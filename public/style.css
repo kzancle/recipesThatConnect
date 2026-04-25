@@ -53,11 +53,15 @@
     width: 120px;
 }
 
-.navBar button{
+.navBar a{
     background-color: var(--color10);
-    padding: 10px 10px;
+    width: 100px;
+    height: 30px;
     color: var(--textWhite);
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 header{
