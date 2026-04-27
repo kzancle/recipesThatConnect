@@ -11,7 +11,9 @@
 <body>
     <div class="lrContainer">
         <div class="bannerHalf">
-
+            <div class="exitBtn">
+                <a href="./login.html"><img src="./assets/img/exitIcon.png" alt=""></a>
+            </div>
         </div>
         <div class="formHalf">
             <h1>Cadastre-se agora mesmo!</h1>
@@ -32,7 +34,7 @@
                     <p>Confirmar senha:</p>
                     <input type="text" placeholder="******" id="iptPasswdConf">
                 </div>
-                <button onclick="inputsValidation()">Entrar</button>
+                <button onclick="inputsValidation()">Cadastrar</button>
             </form>
         </div>
     </div>
@@ -47,7 +49,7 @@
         let passwd = iptPasswd.value
         let passwdConf = iptPasswdConf.value
 
-        if(userName == "" || email == "" || passwd == "" || passwdConf == ""){
+        if (userName == "" || email == "" || passwd == "" || passwdConf == "") {
             alert("Todos os campos devem ser preenchidos!")
             return
         }
@@ -57,18 +59,18 @@
             return
         }
 
-        if(existsVerify(email, "@") == false || existsVerify(email, ".") == false){
+        if (existsVerify(email, "@") == false || existsVerify(email, ".") == false) {
             alert("O email deve conter '@' e '.'")
             return
         }
 
-        if(email.lastIndexOf(".") < email.IndexOf("@")){
+        if (email.lastIndexOf(".") < email.IndexOf("@")) {
             alert("O @ deve vir antes do .")
         }
 
-        if(passwd =! passwdConf){
+        if (passwd = !passwdConf) {
             alert("As senhas não coincidem!")
         }
-        
+
     }
 </script>

@@ -13,8 +13,9 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    text-decoration: 0;
+    text-decoration: none;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 /* HEADER INSTITUCIONAL */
@@ -199,7 +200,7 @@ form{
 }
 
 .formGroup input{
-    border: 1px solid black;
+    border: 2px solid #ccc;
     height: 50px;
     border-radius: 15px;
     padding-left: 15px;
@@ -217,4 +218,9 @@ form button{
 
 .registerRedirect{
     font-size: 0.8em;
+}
+
+.exitBtn img{
+    width: 40px;
+    margin: 30px 0 0  30px;
 }
