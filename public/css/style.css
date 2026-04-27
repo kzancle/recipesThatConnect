@@ -170,7 +170,7 @@ main{
 .bannerHalf{
     width: 50%;
     background-size: cover;
-    background-image: url(./img/loginRegisterBanner.jpg);
+    background-image: url(../assets/img/loginRegisterBanner.jpg);
 }
 
 .formHalf{

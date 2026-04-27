@@ -18,24 +18,57 @@
             <form action="">
                 <div class="formGroup">
                     <p>Nome de usuário:</p>
-                    <input type="text" placeholder="joao">
+                    <input type="text" placeholder="joao" id="iptUsername">
                 </div>
                 <div class="formGroup">
                     <p>Email:</p>
-                    <input type="text" placeholder="joao@gmail.com">
+                    <input type="text" placeholder="joao@gmail.com" id="iptEmail">
                 </div>
                 <div class="formGroup">
                     <p>Senha</p>
-                    <input type="text" placeholder="******">
+                    <input type="text" placeholder="******" id="iptPasswd">
                 </div>
                 <div class="formGroup">
                     <p>Confirmar senha:</p>
-                    <input type="text" placeholder="******">
+                    <input type="text" placeholder="******" id="iptPasswdConf">
                 </div>
-                <button>Entrar</button>
+                <button onclick="inputsValidation()">Entrar</button>
             </form>
         </div>
     </div>
 </body>
 
 </html>
+<script src="./js/functions.js"></script>
+<script>
+    function inputsValidation() {
+        let userName = iptUsername.value
+        let email = iptEmail.value
+        let passwd = iptPasswd.value
+        let passwdConf = iptPasswdConf.value
+
+        if(userName == "" || email == "" || passwd == "" || passwdConf == ""){
+            alert("Todos os campos devem ser preenchidos!")
+            return
+        }
+
+        if (userName.length <= 3) {
+            alert("O nome de usuário deve ter mais de 3 caracteres!")
+            return
+        }
+
+        if(existsVerify(email, "@") == false || existsVerify(email, ".") == false){
+            alert("O email deve conter '@' e '.'")
+            return
+        }
+
+        if(email.lastIndexOf(".") < email.IndexOf("@")){
+            alert("O @ deve vir antes do .")
+        }
+
+        if(passwd =! passwdConf){
+            alert("As senhas não coincidem!")
+        }
+        
+    }
+</script>
