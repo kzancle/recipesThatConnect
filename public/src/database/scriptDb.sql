@@ -1,0 +1,29 @@
+CREATE DATABASE db_rtc;
+USE db_rtc;
+
+CREATE TABLE usuario(
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+nome VARCHAR(30),
+email VARCHAR(40),
+senha VARCHAR(130)
+);
+
+CREATE TABLE receita(
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+nome VARCHAR(50),
+tipo VARCHAR(30),
+ocasiao VARCHAR(30)
+);
+
+CREATE TABLE ingrediente(
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+nome VARCHAR(50)
+);
+
+CREATE TABLE receita_ingrediente(
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+fkreceita INT,
+fkingrediente INT,
+quantidade DECIMAL(10,2),
+unidadeqtd VARCHAR(20)
+);
