@@ -28,7 +28,7 @@
                 </div>
                 <div class="formGroup">
                     <p>Senha</p>
-                    <input type="text" placeholder="******" id="iptPasswd">
+                    <input type="text" placeholder="******" id="iptPasswd" oninput="pontuation()">
                 </div>
                 <div class="formGroup">
                     <p>Confirmar senha:</p>
@@ -36,6 +36,7 @@
                 </div>
                 <button onclick="inputsValidation()">Cadastrar</button>
             </form>
+            <p id="iptPassPoints"></p>
         </div>
     </div>
 </body>
@@ -46,11 +47,11 @@
     function inputsValidation() {
         let userName = iptUsername.value
         let email = iptEmail.value
-        let passwd = iptPasswd.value
         let passwdConf = iptPasswdConf.value
-
+        
         if (userName == "" || email == "" || passwd == "" || passwdConf == "") {
             alert("Todos os campos devem ser preenchidos!")
+            let passwd = iptPasswd.value
             return
         }
 
@@ -66,11 +67,27 @@
 
         if (email.lastIndexOf(".") < email.IndexOf("@")) {
             alert("O @ deve vir antes do .")
+            return
         }
 
         if (passwd = !passwdConf) {
             alert("As senhas não coincidem!")
+            return
         }
 
     }
+
+    function pontuation(){
+        let mensagem = "Senha Muito Fraca"
+        if(pontuationPass(iptPasswd.value) == 2){
+            mensagem = "Senha Fraca"
+        }else if(pontuationPass(iptPasswd.value) == 3){
+            mensagem = "Senha Forte"
+        }else if(pontuationPass(iptPasswd.value) == 4){
+            mensagem = "Senha Muito Forte"
+        }
+
+        iptPassPoints.innerHTML = mensagem
+    }
+    
 </script>
