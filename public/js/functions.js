@@ -21,12 +21,13 @@ function existsSpecial(pass){
     }
     return exists
 }
+
 function pontuationPass(pass){
         let points = 0
         let reSpecial = new RegExp("/[a-zA-Z0-9]/g+$");
         let reUpper = new RegExp("[A-Z]");
         let reNumber = new RegExp("[0-9]");
-        if(pass.length>8){
+        if(pass.length>=8){
             points+= 1
         }
 

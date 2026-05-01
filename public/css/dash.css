@@ -1,0 +1,19 @@
+/* RESET E CONFIGURAÇÔES DE BASE */
+
+:root{
+    --color60: #E6E6E6;
+    --color30: #FFE499;
+    --color10: #FE7F05;
+    --textWhite: #fff;
+    --textBlack: #000;
+}
+
+*{
+    border: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}

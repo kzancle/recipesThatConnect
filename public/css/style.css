@@ -229,3 +229,7 @@ form button{
     margin-top: 220px;
     position: absolute;
 }
+
+#alerta{
+    color: red;
+}

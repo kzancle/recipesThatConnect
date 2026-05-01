@@ -37,6 +37,7 @@
                 <button onclick="inputsValidation()">Cadastrar</button>
             </form>
             <p id="iptPassPoints"></p>
+            <p id="alerta"></p>
         </div>
     </div>
 </body>
@@ -47,34 +48,36 @@
     function inputsValidation() {
         let userName = iptUsername.value
         let email = iptEmail.value
+        let passwd = iptPasswd.value
         let passwdConf = iptPasswdConf.value
-        
+        let message = ""
         if (userName == "" || email == "" || passwd == "" || passwdConf == "") {
-            alert("Todos os campos devem ser preenchidos!")
-            let passwd = iptPasswd.value
+            alerta.innerHTML = "Todos os campos devem ser preenchidos!"
             return
         }
 
         if (userName.length <= 3) {
-            alert("O nome de usuário deve ter mais de 3 caracteres!")
-            return
+            alerta.innerHTML = "O nome de usuário deve ter mais de 3 caracteres!"
+            
         }
 
         if (existsVerify(email, "@") == false || existsVerify(email, ".") == false) {
-            alert("O email deve conter '@' e '.'")
-            return
+            alerta.innerHTML = "O email deeve conter @ e ."
+            
         }
 
-        if (email.lastIndexOf(".") < email.IndexOf("@")) {
-            alert("O @ deve vir antes do .")
-            return
-        }
+        // if (email.lastIndexOf(".") < email.IndexOf("@")) {
+        //     message += `O @ deve vir antes do . <br>`
+            
+        // }
 
         if (passwd = !passwdConf) {
-            alert("As senhas não coincidem!")
-            return
+            alerta.innerHTML = "As senhas não coincidem"
+            
         }
 
+        
+        console.log(message)
     }
 
     function pontuation(){
