@@ -34,9 +34,9 @@
                 </a>
             </div>
         </header>
-        <main>
+        <main class="addRecipeDelimiter">
             <div class="formContainer">
-                <h1>Cadastre uam nova receita</h1>
+                <h1>Cadastre uma nova receita</h1>
                 <form action="">
                     <div class="iptBox">
                         <p>Nome</p>
@@ -54,7 +54,7 @@
                             </select>
                         </div>
                         <div class="select">
-                            <p>Tipo</p>
+                            <p>Ocasião</p>
                             <select name="" id="">
                                 <option value="">teste</option>
                                 <option value="">teste</option>
@@ -65,11 +65,9 @@
                         </div>
                     </div>
                     <div class="ingredientBox">
-                        <div class="ingredient">
-                            <p>Ingrediente</p>
+                        <p>Ingrediente</p>
+                        <div class="ingredientInputs">
                             <input type="text">
-                        </div>
-                        <div class="medidaBox">
                             <select name="" id="">
                                 <option value="">teste</option>
                                 <option value="">teste</option>
@@ -77,13 +75,19 @@
                                 <option value="">teste</option>
                                 <option value="">teste</option>
                             </select>
+                            <button>Inserir</button>
                         </div>
-                        <button>Inserir</button>
+                        <div class="ingredientsInserted">
+                            <p>Ingredientes Cadastrados:</p>
+                            <div class="ingredientsOutput">
+
+                            </div>
+                        </div>
                     </div>
                     <div class="modoPreparo">
+                        <p>Modo de preparo</p>
                         <input type="text">
                     </div>
-                    <div class="ingredientsOutput"></div>
                     <button>CADASTRAR</button>
                 </form>
             </div>
