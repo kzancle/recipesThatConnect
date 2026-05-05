@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/dash.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Document</title>
 </head>
 
@@ -37,18 +38,97 @@
         <main>
             <div class="content">
                 <div class="greeting">
+                    <p>Olá, João</p>
                 </div>
                 <div class="kpiBox">
-                    <div class="kpi"></div>
-                    <div class="kpi"></div>
-                    <div class="kpi"></div>
-                    <div class="kpi"></div>
-                    <div class="kpi"></div>
+                    <div class="kpi">
+                        <p>Entrada</p>
+                        <p>0</p>
+                    </div>
+                    <div class="kpi">
+                        <p>Prato Principal</p>
+                        <p>0</p>
+                    </div>
+                    <div class="kpi">
+                        <p>Sobremesa</p>
+                        <p>0</p>
+                    </div>
+                    <div class="kpi">
+                        <p>Bebida</p>
+                        <p>0</p>
+                    </div>
+                    <div class="kpi">
+                        <p>Lanche</p>
+                        <p>0</p>
+                    </div>
+                </div>
+                <div class="graphics">
+                    <div class="tipoGraph">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="ocasiaoGraph">
+                        <canvas id="myChart2"></canvas>
+                    </div>
                 </div>
             </div>
-            <p>Gráfico</p>
         </main>
     </div>
 </body>
 
 </html>
+<script>
+    const ctx1 = document.getElementById('myChart');
+    const ctx2 = document.getElementById('myChart2');
+
+new Chart(ctx1, {
+  type: 'doughnut',
+  data: {
+    labels: ['Entrada', 'Prato Principal', 'Sobremesa', 'Bebida', 'Lanche'],
+    datasets: [{
+      label: 'Quantidade de receitas',
+      data: [5, 5, 5, 5,5],
+      backgroundColor: [
+        '#FF6384',
+        '#36A2EB',
+        '#FFCE56',
+        '#4BC0C0',
+        '#FFCE56'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    plugins: {
+      legend: {
+        position: 'bottom'
+      }
+    }
+  }
+});
+
+new Chart(ctx2, {
+  type: 'doughnut',
+  data: {
+    labels: ['Data Comemorativa', 'Dia a Dia', 'Fitness', 'Date', 'Outro'],
+    datasets: [{
+      label: 'Quantidade de receitas',
+      data: [5, 5, 5, 5,5],
+      backgroundColor: [
+        '#FF6384',
+        '#36A2EB',
+        '#FFCE56',
+        '#4BC0C0',
+        '#FFCE56'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    plugins: {
+      legend: {
+        position: 'bottom'
+      }
+    }
+  }
+});
+</script>
