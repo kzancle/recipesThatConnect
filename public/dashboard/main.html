@@ -38,7 +38,7 @@
         <main>
             <div class="content">
                 <div class="greeting">
-                    <p>Olá, João</p>
+                    <p>Olá, <span id="b_usuario"></span>.    Você tem <span>qtdReceitas</span> receitas cadastradas no momento!</p>
                 </div>
                 <div class="kpiBox">
                     <div class="kpi">
@@ -131,4 +131,6 @@ new Chart(ctx2, {
     }
   }
 });
+
+b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 </script>
