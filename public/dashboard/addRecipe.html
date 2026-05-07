@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/dash.css">
-    <title>Document</title>
+    <title>Cadastrar Receita</title>
 </head>
 
 <body>
+
     <div class="container">
         <header>
             <div class="navbar">
@@ -37,30 +38,51 @@
         <main class="addRecipeDelimiter">
             <div class="formContainer">
                 <h1>Cadastre uma nova receita</h1>
-                <form action="">
+                <form>
                     <div class="iptBox">
                         <p>Nome</p>
-                        <input type="text">
+                        <input type="text" id="inputNome">
                     </div>
                     <div class="selectsBox">
                         <div class="select">
                             <p>Tipo</p>
-                            <select name="" id="">
-                                <option value="">teste</option>
-                                <option value="">teste</option>
-                                <option value="">teste</option>
-                                <option value="">teste</option>
-                                <option value="">teste</option>
+                            <select id="selectTipo">
+                                <option value="entrada">Entrada</option>
+                                <option value="prato principal">
+                                    Prato Principal
+                                </option>
+                                <option value="sobremesa">
+                                    Sobremesa
+                                </option>
+                                <option value="bebida">
+                                    Bebida
+                                </option>
+                                <option value="lanche">
+                                    Lanche
+                                </option>
+                                <option value="outro">
+                                    Outro
+                                </option>
                             </select>
                         </div>
                         <div class="select">
                             <p>Ocasião</p>
-                            <select name="" id="">
-                                <option value="">teste</option>
-                                <option value="">teste</option>
-                                <option value="">teste</option>
-                                <option value="">teste</option>
-                                <option value="">teste</option>
+                            <select id="selectOcasiao">
+                                <option value="dia a dia">
+                                    Dia a dia
+                                </option>
+                                <option value="fitness">
+                                    Fitness
+                                </option>
+                                <option value="date">
+                                    Date
+                                </option>
+                                <option value="data comemorativa">
+                                    Data comemorativa
+                                </option>
+                                <option value="outro">
+                                    Outro
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -68,19 +90,16 @@
                         <p>Ingrediente</p>
                         <div class="ingredientInputs">
                             <input type="text">
-                            <select name="" id="">
-                                <option value="">teste</option>
-                                <option value="">teste</option>
-                                <option value="">teste</option>
-                                <option value="">teste</option>
-                                <option value="">teste</option>
+                            <select>
+                                <option value="">Quantidade</option>
                             </select>
-                            <button>Inserir</button>
+                            <button type="button">
+                                Inserir
+                            </button>
                         </div>
                         <div class="ingredientsInserted">
-                            <p>Ingredientes Cadastrados:</p>
+                            <p>Ingredientes cadastrados:</p>
                             <div class="ingredientsOutput">
-
                             </div>
                         </div>
                     </div>
@@ -88,14 +107,55 @@
                         <p>Modo de preparo</p>
                         <input type="text">
                     </div>
-                    <button>CADASTRAR</button>
+                    <button type="button" onclick="cadastrarReceita()">
+                        CADASTRAR
+                    </button>
                 </form>
             </div>
         </main>
         <footer>
-
         </footer>
     </div>
 </body>
-
 </html>
+<script>
+    function cadastrarReceita() {
+
+        var nome = inputNome.value;
+        var tipo = selectTipo.value;
+        var ocasiao = selectOcasiao.value;
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch("/receita/cadastrar", {
+
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+
+                nome: nome,
+                tipo: tipo,
+                ocasiao: ocasiao,
+                idUsuario: idUsuario
+
+            })
+        })
+
+            .then(function (resposta) {
+                console.log(resposta);
+                if (resposta.ok) {
+                    alert("Receita cadastrada com sucesso!");
+                    inputNome.value = "";
+                } else {
+                    alert("Erro ao cadastrar receita!");
+                }
+            })
+            .catch(function (erro) {
+
+                console.log(erro);
+
+            });
+    }
+</script>

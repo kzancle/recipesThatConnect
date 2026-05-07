@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body onload="validarSessao(), exibirReceita(),  atualizacaoPeriodica()">
     <div class="container">
         <header>
             <div class="navbar">
@@ -43,42 +43,7 @@
                             <p>Cookies</p>
                         </a>
                     </div>
-                    <div class="recipe">
-                        <a href="">
-                            <img src="../assets/img/dottedmenu.png" alt="">
-                            <p>Cookies</p>
-                        </a>
-                    </div>
-                    <div class="recipe">
-                        <a href="">
-                            <img src="../assets/img/dottedmenu.png" alt="">
-                            <p>Cookies</p>
-                        </a>
-                    </div>
-                    <div class="recipe">
-                        <a href="">
-                            <img src="../assets/img/dottedmenu.png" alt="">
-                            <p>Cookies</p>
-                        </a>
-                    </div>
-                    <div class="recipe">
-                        <a href="">
-                            <img src="../assets/img/dottedmenu.png" alt="">
-                            <p>Cookies</p>
-                        </a>
-                    </div>
-                    <div class="recipe">
-                        <a href="">
-                            <img src="../assets/img/dottedmenu.png" alt="">
-                            <p>Cookies</p>
-                        </a>
-                    </div>
-                    <div class="recipe">
-                        <a href="">
-                            <img src="../assets/img/dottedmenu.png" alt="">
-                            <p>Cookies</p>
-                        </a>
-                    </div>
+                    
                 </div>
             </div>
         </main>
@@ -86,3 +51,32 @@
 </body>
 
 </html>
+<script src="../js/sessao.js"></script>
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function exibirReceita() {
+        JSON.parse(sessionStorage.RECEITA).forEach(item => {
+            document.getElementById("recipeBox").innerHTML += `
+
+                    <div class="recipe">
+                        <a href="">
+                            <img src="../assets/img/dottedmenu.png" alt="">
+                            <p>${item.nome}</p>
+                        </a>
+                    </div>`
+        });
+    }
+</script>
+
+<!-- <div class="card-aquario">
+                        <div class="title-aquario">
+                            <h1>${item.descricao}</h1>
+                        </div>
+                        <div class="desc-aquario">
+                        <div class="temperatura">
+                            <p id="temp_aquario_${item.id}">-°C</p>
+                        </div>
+                        <div class="cor-alerta" id="card_${item.id}"></div>
+                    </div>
+                    </div> -->
