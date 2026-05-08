@@ -3,8 +3,8 @@ var router = express.Router();
 
 var receitaController = require("../controllers/receitaController");
 
-router.get("/", function (req, res) {
-    receitaController.listar(req, res);
+router.get("/:idUsuario", function (req, res) {
+    receitaController.buscarReceitas(req, res);
 });
 
 router.post("/cadastrar", function (req, res) {

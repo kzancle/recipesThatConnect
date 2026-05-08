@@ -19,6 +19,6 @@ function cadastrar(nome, tipo, ocasiao, idusuario) {
 
 
 module.exports = {
-  // buscarAquariosPorEmpresa,
+  buscarReceitas,
   cadastrar
 }

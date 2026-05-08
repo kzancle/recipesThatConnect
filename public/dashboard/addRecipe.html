@@ -48,54 +48,35 @@
                             <p>Tipo</p>
                             <select id="selectTipo">
                                 <option value="entrada">Entrada</option>
-                                <option value="prato principal">
-                                    Prato Principal
-                                </option>
-                                <option value="sobremesa">
-                                    Sobremesa
-                                </option>
-                                <option value="bebida">
-                                    Bebida
-                                </option>
-                                <option value="lanche">
-                                    Lanche
-                                </option>
-                                <option value="outro">
-                                    Outro
-                                </option>
+                                <option value="prato principal">Prato Principal</option>
+                                <option value="sobremesa">Sobremesa</option>
+                                <option value="bebida">Bebida</option>
+                                <option value="lanche">Lanche</option>
+                                <option value="outro">Outro</option>
                             </select>
                         </div>
                         <div class="select">
                             <p>Ocasião</p>
                             <select id="selectOcasiao">
-                                <option value="dia a dia">
-                                    Dia a dia
-                                </option>
-                                <option value="fitness">
-                                    Fitness
-                                </option>
-                                <option value="date">
-                                    Date
-                                </option>
-                                <option value="data comemorativa">
-                                    Data comemorativa
-                                </option>
-                                <option value="outro">
-                                    Outro
-                                </option>
+                                <option value="dia a dia">Dia a dia</option>
+                                <option value="fitness">Fitness</option>
+                                <option value="date">Date</option>
+                                <option value="data comemorativa">Data comemorativa</option>
+                                <option value="outro">Outro</option>
                             </select>
                         </div>
                     </div>
                     <div class="ingredientBox">
                         <p>Ingrediente</p>
                         <div class="ingredientInputs">
-                            <input type="text">
+                            <input type="text" id="ingredienteInput">
                             <select>
                                 <option value="">Quantidade</option>
                             </select>
-                            <button type="button">
-                                Inserir
-                            </button>
+                            <select>
+                                <option value="">Unidade de medida</option>
+                            </select>
+                            <button type="button" onclick="cadastrarIngrediente()">Inserir</button>
                         </div>
                         <div class="ingredientsInserted">
                             <p>Ingredientes cadastrados:</p>
@@ -107,9 +88,7 @@
                         <p>Modo de preparo</p>
                         <input type="text">
                     </div>
-                    <button type="button" onclick="cadastrarReceita()">
-                        CADASTRAR
-                    </button>
+                    <button type="button" onclick="cadastrarReceita()">CADASTRAR</button>
                 </form>
             </div>
         </main>
@@ -150,6 +129,41 @@
                     inputNome.value = "";
                 } else {
                     alert("Erro ao cadastrar receita!");
+                }
+            })
+            .catch(function (erro) {
+
+                console.log(erro);
+
+            });
+    }
+
+     function cadastrarIngrediente() {
+
+        var nome = ingredienteInput.value
+        console.log(nome)
+
+        fetch("/ingrediente/cadastrar", {
+
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+
+                nome: nome
+
+            })
+        })
+
+            .then(function (resposta) {
+                console.log(resposta);
+                if (resposta.ok) {
+                    alert("Ingrediente cadastrado com sucesso!");
+                    ingredienteInput.value = "";
+                } else {
+                    alert("Erro ao cadastrar ingrediente!");
                 }
             })
             .catch(function (erro) {

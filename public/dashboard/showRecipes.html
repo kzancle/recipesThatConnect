@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 
-<body onload="validarSessao(), exibirReceita(),  atualizacaoPeriodica()">
+<body onload="exibirReceita(),  atualizacaoPeriodica()">
     <div class="container">
         <header>
             <div class="navbar">
@@ -36,13 +36,7 @@
         </header>
         <main>
             <div class="content">
-                <div class="recipeBox">
-                    <div class="recipe">
-                        <a href="">
-                            <img src="../assets/img/dottedmenu.png" alt="">
-                            <p>Cookies</p>
-                        </a>
-                    </div>
+                <div class="recipeBox" id="recipeBox">
                     
                 </div>
             </div>
@@ -56,9 +50,45 @@
     // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     function exibirReceita() {
-        JSON.parse(sessionStorage.RECEITA).forEach(item => {
-            document.getElementById("recipeBox").innerHTML += `
+    console.log(sessionStorage.ID_USUARIO)
 
+    fetch(`/receita/${sessionStorage.ID_USUARIO}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    //   body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        // nomeServer: nomeVar,
+        // emailServer: emailVar,
+        // senhaServer: senhaVar,
+        // idEmpresaVincularServer: idEmpresaVincular
+    //   }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+        if (resposta.ok) {
+        //   cardErro.style.display = "block";
+
+          console.log("Deu Bom")
+
+          return resposta.json();
+        //   setTimeout(() => {
+        //     window.location = "login.html";
+        //   }, "2000");
+        //   limparFormulario();
+        //   finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar listar as receitas";
+        }
+      })
+      .then(function(json){
+
+        console.log(json);
+
+        json.forEach(item => {
+            document.getElementById("recipeBox").innerHTML += `
                     <div class="recipe">
                         <a href="">
                             <img src="../assets/img/dottedmenu.png" alt="">
@@ -66,7 +96,15 @@
                         </a>
                     </div>`
         });
-    }
+      })
+
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+      });
+      // O erro aqui foi de caminho na rota, as funções não batiam, e também não usei o ID como parâmetro para chamar as receitas. Além disso o recipeBox não tinha ID, confundi com a classe.
+      // Mudei o fetch do cadastro para GET, para retornar as receitas.
+}
 </script>
 
 <!-- <div class="card-aquario">

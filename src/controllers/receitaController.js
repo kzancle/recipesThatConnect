@@ -2,7 +2,7 @@
 
   function buscarReceitas(req, res) {
     var idUsuario = req.params.idUsuario;
-
+    
     receitaModel.buscarReceitas(idUsuario).then((resultado) => {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
@@ -11,7 +11,7 @@
       }
     }).catch(function (erro) {
       console.log(erro);
-      console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
+      console.log("Houve um erro ao buscar as receitas: ", erro.sqlMessage);
       res.status(500).json(erro.sqlMessage);
     });
   }
@@ -46,5 +46,5 @@
  }
 
  module.exports = {
-   cadastrar
+   cadastrar, buscarReceitas
  }
