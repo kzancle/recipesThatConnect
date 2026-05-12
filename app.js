@@ -21,6 +21,7 @@ var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 var receitaRouter = require("./src/routes/receita");
 var ingredienteRouter = require("./src/routes/ingrediente");
+var kpiRouter = require("./src/routes/kpis");
 var empresasRouter = require("./src/routes/empresas");
 
 app.use(express.json());
@@ -35,6 +36,7 @@ app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
 app.use("/receita", receitaRouter);
 app.use("/ingrediente", ingredienteRouter);
+app.use("/kpis", kpiRouter);
 app.use("/empresas", empresasRouter);
 
 app.listen(PORTA_APP, function () {
