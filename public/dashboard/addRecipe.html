@@ -70,13 +70,19 @@
                         <p>Ingrediente</p>
                         <div class="ingredientInputs">
                             <input type="text" id="ingredienteInput">
-                            <select>
-                                <option value="">Quantidade</option>
+                            <input type="number" id="quantidadeInput">
+                            <select id="unidadeInput">
+                                <option value="unidade">Unidade</option>
+                                <option value="ml">ml</option>
+                                <option value="L">L</option>
+                                <option value="g">g</option>
+                                <option value="kg">kg</option>
+                                <option value="mg">mg</option>
+                                <option value="xicara">xícara</option>
+                                <option value="colhSopa">colher de sopa</option>
+                                <option value="colhcha">colher de chá</option>
                             </select>
-                            <select>
-                                <option value="">Unidade de medida</option>
-                            </select>
-                            <button type="button" onclick="cadastrarIngrediente()">Inserir</button>
+                            <button type="button" onclick="inserirIngredienteNoJson()">Inserir</button>
                         </div>
                         <div class="ingredientsInserted">
                             <p>Ingredientes cadastrados:</p>
@@ -86,9 +92,9 @@
                     </div>
                     <div class="modoPreparo">
                         <p>Modo de preparo</p>
-                        <input type="text">
+                        <input type="text" id="inputPreparo">
                     </div>
-                    <button type="button" onclick="cadastrarReceita()">CADASTRAR</button>
+                    <button type="button" onclick="cadastrar()">CADASTRAR</button>
                 </form>
             </div>
         </main>
@@ -96,80 +102,131 @@
         </footer>
     </div>
 </body>
+
 </html>
 <script>
-    function cadastrarReceita() {
 
+    let jsonIngredientes = []
+    function inserirIngredienteNoJson() {
+        let nome = ingredienteInput.value
+        let quantidade = Number(quantidadeInput.value)
+        let unidadeMedida = unidadeInput.value
+
+        jsonIngredientes.push(
+            {
+                "nome": nome,
+                "quantidade": quantidade,
+                "unidadeMedida": unidadeMedida
+            }
+        )
+        console.log(jsonIngredientes)
+    }
+
+    async function cadastrar() {
+        //RECEITA
         var nome = inputNome.value;
         var tipo = selectTipo.value;
         var ocasiao = selectOcasiao.value;
         var idUsuario = sessionStorage.ID_USUARIO;
+        let idReceitaCadastrada
+        let idIngredienteCadastrado
+        let idIngredienteReceita
 
-        fetch("/receita/cadastrar", {
 
+        await fetch("/receita/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify({
-
                 nome: nome,
                 tipo: tipo,
                 ocasiao: ocasiao,
                 idUsuario: idUsuario
-
             })
         })
-
             .then(function (resposta) {
                 console.log(resposta);
                 if (resposta.ok) {
                     alert("Receita cadastrada com sucesso!");
-                    inputNome.value = "";
+                    return resposta.json();
                 } else {
                     alert("Erro ao cadastrar receita!");
                 }
             })
-            .catch(function (erro) {
 
-                console.log(erro);
-
-            });
-    }
-
-     function cadastrarIngrediente() {
-
-        var nome = ingredienteInput.value
-        console.log(nome)
-
-        fetch("/ingrediente/cadastrar", {
-
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-
-                nome: nome
+            .then(function (json) {
+                idReceitaCadastrada = json.insertId;
+                console.log(`ID DA RECEITA CADASTRADA: ${idReceitaCadastrada}`);
 
             })
-        })
-
-            .then(function (resposta) {
-                console.log(resposta);
-                if (resposta.ok) {
-                    alert("Ingrediente cadastrado com sucesso!");
-                    ingredienteInput.value = "";
-                } else {
-                    alert("Erro ao cadastrar ingrediente!");
-                }
-            })
             .catch(function (erro) {
-
                 console.log(erro);
-
             });
+
+
+        for (let i = 0; i < jsonIngredientes.length; i++) {
+
+            await fetch("/ingrediente/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nome: jsonIngredientes[i].nome,
+                    
+                })
+            })
+                .then(function (resposta) {
+                    console.log(resposta);
+                    if (resposta.ok) {
+                        alert("Ingrediente cadastrado com sucesso!");
+                        return resposta.json();
+                    } else {
+                        alert("Erro ao cadastrar Ingrediente!");
+                    }
+                })
+
+                .then(function (json) {
+                    idIngredienteCadastrado = json.insertId;
+                    console.log(`ID DO INGREDIENTE CADASTRADO: ${idIngredienteCadastrado}`);
+
+                })
+                .catch(function (erro) {
+                    console.log(erro);
+                });
+
+
+                await fetch("/receitaIngrediente/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    idReceita: idReceitaCadastrada,
+                    idIngrediente: idIngredienteCadastrado,
+                    quantidade: jsonIngredientes[i].quantidade, 
+                    unidadeQtd: jsonIngredientes[i].unidadeMedida
+                })
+            })
+                .then(function (resposta) {
+                    console.log(resposta);
+                    if (resposta.ok) {
+                        alert("Linkado no NN com sucesso!");
+                        return resposta.json();
+                    } else {
+                        alert("Erro ao linkar no NN!");
+                    }
+                })
+
+                // .then(function (json) {
+                //     let idIngredienteReceita = json.insertId;
+                //     console.log(idIngredienteReceita);
+
+                // })
+                .catch(function (erro) {
+                    console.log(erro);
+                });
+        }
     }
 </script>
