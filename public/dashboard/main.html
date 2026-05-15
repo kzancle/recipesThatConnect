@@ -71,23 +71,23 @@
           <div class="kpi">
             <h2>Ocasiões</h2>
             <div class="value">
-              <p>Data Festiva:</p><span id="outEntrada">0</span>
+              <p>Data Festiva:</p><span id="outComemorativa">0</span>
             </div>
             <div class="value">
-              <p>Dia a Dia:</p><span id="outPratoPrincipal">0</span>
+              <p>Dia a Dia:</p><span id="outDiaDia">0</span>
             </div>
             <div class="value">
-              <p>Fitness:</p><span id="outSobremesa">0</span>
+              <p>Fitness:</p><span id="outFitness">0</span>
             </div>
             <div class="value">
-              <p>Date:</p><span id="outBebida">0</span>
+              <p>Date:</p><span id="outDate">0</span>
             </div>
             <div class="value">
-              <p>Outro:</p><span id="outLanche">0</span>
+              <p>Outro:</p><span id="outOutro">0</span>
             </div>
           </div>
           <div class="graphic">
-            <canvas id="myChart"></canvas>
+            <canvas id="myChart2"></canvas>
           </div>
         </div>
       </div>
@@ -219,6 +219,12 @@
         }
       }
     });
+
+    outComemorativa.innerHTML = resultadosOcasiao[0]
+    outDiaDia.innerHTML = resultadosOcasiao[1]
+    outFitness.innerHTML = resultadosOcasiao[2]
+    outDate.innerHTML = resultadosOcasiao[3]
+    outOutro.innerHTML = resultadosOcasiao[4]
   }
 
   function exibirQtdReceita() {
