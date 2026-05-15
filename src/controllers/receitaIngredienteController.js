@@ -2,10 +2,10 @@ var receitaIngredienteModel = require("../models/receitaIngredienteModel");
 
 function cadastrar(req, res) {
 
-   var idReceita = req.body.idReceitaCadastrada;
-   var idIngrediente = req.body.idIngredienteCadastrado;
+   var idReceita = req.body.idReceita;
+   var idIngrediente = req.body.idIngrediente;
    var quantidade = req.body.quantidade;
-   var unidadeMedida = req.body.unidadeMedida;
+   var unidadeMedida = req.body.unidadeQtd;
 
    if (idReceita == undefined) {
       res.status(400).send("idReceita está undefined!");

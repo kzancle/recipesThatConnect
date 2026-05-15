@@ -86,7 +86,7 @@
                         </div>
                         <div class="ingredientsInserted">
                             <p>Ingredientes cadastrados:</p>
-                            <div class="ingredientsOutput">
+                            <div id="ingredientsOutput">
                             </div>
                         </div>
                     </div>
@@ -105,13 +105,13 @@
 
 </html>
 <script>
-
+    let listaNomes = []
     let jsonIngredientes = []
     function inserirIngredienteNoJson() {
         let nome = ingredienteInput.value
         let quantidade = Number(quantidadeInput.value)
         let unidadeMedida = unidadeInput.value
-
+        listaNomes.push(nome)
         jsonIngredientes.push(
             {
                 "nome": nome,
@@ -119,7 +119,7 @@
                 "unidadeMedida": unidadeMedida
             }
         )
-        console.log(jsonIngredientes)
+        ingredientsOutput.innerHTML = listaNomes
     }
 
     async function cadastrar() {
@@ -174,7 +174,7 @@
                 },
                 body: JSON.stringify({
                     nome: jsonIngredientes[i].nome,
-                    
+
                 })
             })
                 .then(function (resposta) {
@@ -197,7 +197,7 @@
                 });
 
 
-                await fetch("/receitaIngrediente/cadastrar", {
+            await fetch("/receitaIngrediente/cadastrar", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -205,7 +205,7 @@
                 body: JSON.stringify({
                     idReceita: idReceitaCadastrada,
                     idIngrediente: idIngredienteCadastrado,
-                    quantidade: jsonIngredientes[i].quantidade, 
+                    quantidade: jsonIngredientes[i].quantidade,
                     unidadeQtd: jsonIngredientes[i].unidadeMedida
                 })
             })
@@ -213,6 +213,7 @@
                     console.log(resposta);
                     if (resposta.ok) {
                         alert("Linkado no NN com sucesso!");
+                        jsonIngredientes = []
                         return resposta.json();
                     } else {
                         alert("Erro ao linkar no NN!");
