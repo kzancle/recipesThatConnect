@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 
-<body onload="exibirReceita(),  atualizacaoPeriodica()">
+<body onload="exibirReceita()">
     <div class="container">
         <header>
             <div class="navbar">
@@ -37,7 +37,7 @@
         <main>
             <div class="content">
                 <div class="recipeBox" id="recipeBox">
-                    
+
                 </div>
             </div>
         </main>
@@ -47,74 +47,105 @@
 </html>
 <script src="../js/sessao.js"></script>
 <script>
-    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     function exibirReceita() {
-    console.log(sessionStorage.ID_USUARIO)
+        console.log(sessionStorage.ID_USUARIO)
 
-    fetch(`/receita/${sessionStorage.ID_USUARIO}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    //   body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        // nomeServer: nomeVar,
-        // emailServer: emailVar,
-        // senhaServer: senhaVar,
-        // idEmpresaVincularServer: idEmpresaVincular
-    //   }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-        if (resposta.ok) {
-        //   cardErro.style.display = "block";
+        fetch(`/receita/${sessionStorage.ID_USUARIO}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            //   body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            // nomeServer: nomeVar,
+            // emailServer: emailVar,
+            // senhaServer: senhaVar,
+            // idEmpresaVincularServer: idEmpresaVincular
+            //   }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+                if (resposta.ok) {
+                    //   cardErro.style.display = "block";
 
-          console.log("Deu certo para mostrar as receitas do usuário")
+                    console.log("Deu certo para mostrar as receitas do usuário")
 
-          return resposta.json();
-        //   setTimeout(() => {
-        //     window.location = "login.html";
-        //   }, "2000");
-        //   limparFormulario();
-        //   finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar listar as receitas";
-        }
-      })
-      .then(function(json){
+                    return resposta.json();
+                    //   setTimeout(() => {
+                    //     window.location = "login.html";
+                    //   }, "2000");
+                    //   limparFormulario();
+                    //   finalizarAguardar();
+                } else {
+                    throw "Houve um erro ao tentar listar as receitas";
+                }
+            })
+            .then(function (json) {
 
-        console.log(json);
+                console.log(json);
 
-        json.forEach(item => {
-            document.getElementById("recipeBox").innerHTML += `
-                    <div class="recipe">
-                        <a href="">
+                json.forEach(item => {
+                    document.getElementById("recipeBox").innerHTML +=
+                        `<div class="recipe" onclick="buscarIngredientesDaReceita(${item.id})">
                             <img src="../assets/img/dottedmenu.png" alt="">
                             <p>${item.nome}</p>
-                        </a>
-                    </div>`
-        });
-      })
+                        </div>`
+                });
+            })
 
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        // finalizarAguardar();
-      });
-      // O erro aqui foi de caminho na rota, as funções não batiam, e também não usei o ID como parâmetro para chamar as receitas. Além disso o recipeBox não tinha ID, confundi com a classe.
-      // Mudei o fetch do cadastro para GET, para retornar as receitas.
-}
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                // finalizarAguardar();
+            });
+        // O erro aqui foi de caminho na rota, as funções não batiam, e também não usei o ID como parâmetro para chamar as receitas. Além disso o recipeBox não tinha ID, confundi com a classe.
+        // Mudei o fetch do cadastro para GET, para retornar as receitas.
+    }
+
+    function buscarIngredientesDaReceita(idReceita) {
+        alert(idReceita)
+        fetch(`/receitaIngrediente/${sessionStorage.ID_USUARIO}/${idReceita}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            // body: JSON.stringify({
+            //     idReceita: idReceita,
+            // }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+                if (resposta.ok) {
+                    //   cardErro.style.display = "block";
+
+                    console.log("Deu certo para pegar os ingredientes da receita")
+
+                    return resposta.json();
+                    //   setTimeout(() => {
+                    //     window.location = "login.html";
+                    //   }, "2000");
+                    //   limparFormulario();
+                    //   finalizarAguardar();
+                } else {
+                    throw "Houve um erro ao tentar listar os ingredientes da receita";
+                }
+            })
+            .then(function (json) {
+
+                console.log(json);
+
+                // json.forEach(item => {
+                //     document.getElementById("recipeBox").innerHTML +=
+                //         `<div class="recipe" onclick="buscarIngredientesDaReceita(${item.id})">
+                //             <img src="../assets/img/dottedmenu.png" alt="">
+                //             <p>${item.nome}</p>
+                //         </div>`
+                // });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                // finalizarAguardar();
+            });
+    }
 </script>
-
-<!-- <div class="card-aquario">
-                        <div class="title-aquario">
-                            <h1>${item.descricao}</h1>
-                        </div>
-                        <div class="desc-aquario">
-                        <div class="temperatura">
-                            <p id="temp_aquario_${item.id}">-°C</p>
-                        </div>
-                        <div class="cor-alerta" id="card_${item.id}"></div>
-                    </div>
-                    </div> -->

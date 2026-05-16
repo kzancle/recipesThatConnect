@@ -213,8 +213,6 @@
                     console.log(resposta);
                     if (resposta.ok) {
                         alert("Linkado no NN com sucesso!");
-                        jsonIngredientes = []
-                        listaNomes = []
                         return resposta.json();
                     } else {
                         alert("Erro ao linkar no NN!");
@@ -230,5 +228,7 @@
                     console.log(erro);
                 });
         }
+        jsonIngredientes = []
+        listaNomes = []
     }
 </script>
