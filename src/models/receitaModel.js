@@ -8,11 +8,11 @@ var database = require("../database/config");
    return database.executar(instrucaoSql);
  }
 
-function cadastrar(nome, tipo, ocasiao, idusuario) {
+function cadastrar(nome, tipo, ocasiao, modoPreparo, idusuario ) {
     var instrucaoSql = `
         INSERT INTO receita 
-        (nome, tipo, ocasiao, fkusuario)
-        VALUES ('${nome}', '${tipo}', '${ocasiao}', ${idusuario});`;
+        (nome, tipo, ocasiao, preparo, fkusuario)
+        VALUES ('${nome}', '${tipo}', '${ocasiao}', '${modoPreparo}', ${idusuario});`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }

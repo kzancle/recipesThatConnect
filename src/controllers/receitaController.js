@@ -21,7 +21,8 @@
    var nome = req.body.nome;
    var tipo = req.body.tipo;
    var ocasiao = req.body.ocasiao;
-   var idUsuario = req.body.idUsuario
+   var modoPreparo = req.body.modoPreparo;
+   var idUsuario = req.body.idUsuario;
 
     if (nome == undefined) {
       res.status(400).send("nome está undefined!");
@@ -30,7 +31,7 @@
     } else {
 
 
-     receitaModel.cadastrar(nome, tipo, ocasiao, idUsuario)
+     receitaModel.cadastrar(nome, tipo, ocasiao, modoPreparo, idUsuario)
        .then((resultado) => {
          res.status(201).json(resultado);
        }

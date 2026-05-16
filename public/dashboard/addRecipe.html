@@ -127,11 +127,11 @@
         var nome = inputNome.value;
         var tipo = selectTipo.value;
         var ocasiao = selectOcasiao.value;
+        var modoPreparo = inputPreparo.value;
         var idUsuario = sessionStorage.ID_USUARIO;
         let idReceitaCadastrada
         let idIngredienteCadastrado
         let idIngredienteReceita
-
 
         await fetch("/receita/cadastrar", {
             method: "POST",
@@ -142,7 +142,9 @@
                 nome: nome,
                 tipo: tipo,
                 ocasiao: ocasiao,
+                modoPreparo: modoPreparo,
                 idUsuario: idUsuario
+                
             })
         })
             .then(function (resposta) {
