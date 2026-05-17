@@ -128,10 +128,8 @@ header{
     gap: 30px;
 }
 
-.recipe a{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+.recipe p{
+    margin-left: 20px;
     color: #000;
     font-size: 1.5em;
 }
@@ -275,4 +273,61 @@ form button{
 
 .value p{
     width: 50%;
+}
+
+.recipeScreen{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+.recipeContent{
+    width: 40%;
+    height: 80%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.recipeContent img{
+    width: 50px;
+}
+
+.recipeInfos{
+    /* border: 1px solid red; */
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.recipeTitle{
+    font-size: 1.7em;
+    margin: 10px 0 10px 0;
+}
+
+.ingredientBoxScreen{
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.3em;
+}
+
+
+
+.preparoBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
 }

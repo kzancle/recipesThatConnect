@@ -39,6 +39,18 @@
                 <div class="recipeBox" id="recipeBox">
 
                 </div>
+                <div class="recipeScreen" id="recipeScreen">
+                    <div class="recipeContent">
+                        <img src="../assets/img/exitBlack.png" alt="" onclick="closeRecipeScreen()">
+                        <div class="recipeInfos">
+                            <div class="recipeTitle" id="recipeTitle"></div>
+                            <div class="ingredientBoxScreen" id="ingredientBox"></div>
+                            <div class="preparoBox" id="preparoBox">
+                                <h2>Modo de preparo</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
@@ -104,7 +116,6 @@
     }
 
     function buscarIngredientesDaReceita(idReceita) {
-        alert(idReceita)
         fetch(`/receitaIngrediente/${sessionStorage.ID_USUARIO}/${idReceita}`, {
             method: "GET",
             headers: {
@@ -134,18 +145,24 @@
             .then(function (json) {
 
                 console.log(json);
-
-                // json.forEach(item => {
-                //     document.getElementById("recipeBox").innerHTML +=
-                //         `<div class="recipe" onclick="buscarIngredientesDaReceita(${item.id})">
-                //             <img src="../assets/img/dottedmenu.png" alt="">
-                //             <p>${item.nome}</p>
-                //         </div>`
-                // });
+                document.getElementById("recipeTitle").innerHTML = `${json[0].rNome}`
+                document.getElementById("preparoBox").innerHTML += `${json[0].preparo}`
+                json.forEach(item => {
+                    document.getElementById("ingredientBox").innerHTML +=
+                        `${item.quantidade} ${item.unidadeqtd} de ${item.nome}<br>`
+                });
+                recipeScreen.style.display = 'flex'
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
                 // finalizarAguardar();
             });
     }
+
+    function closeRecipeScreen() {
+        recipeScreen.style.display = 'none'
+        document.getElementById("ingredientBox").innerHTML = ""
+        document.getElementById("recipeTitle").innerHTML = ""
+    }
+
 </script>

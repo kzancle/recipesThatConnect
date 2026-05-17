@@ -150,10 +150,10 @@
             .then(function (resposta) {
                 console.log(resposta);
                 if (resposta.ok) {
-                    alert("Receita cadastrada com sucesso!");
+                    console.log("Receita cadastrada com sucesso!");
                     return resposta.json();
                 } else {
-                    alert("Erro ao cadastrar receita!");
+                    console.log("Erro ao cadastrar receita!");
                 }
             })
 
@@ -182,10 +182,10 @@
                 .then(function (resposta) {
                     console.log(resposta);
                     if (resposta.ok) {
-                        alert("Ingrediente cadastrado com sucesso!");
+                        console.log("Ingrediente cadastrado com sucesso!");
                         return resposta.json();
                     } else {
-                        alert("Erro ao cadastrar Ingrediente!");
+                        console.log("Erro ao cadastrar Ingrediente!");
                     }
                 })
 
@@ -214,10 +214,10 @@
                 .then(function (resposta) {
                     console.log(resposta);
                     if (resposta.ok) {
-                        alert("Linkado no NN com sucesso!");
+                        console.log("Linkado no NN com sucesso!");
                         return resposta.json();
                     } else {
-                        alert("Erro ao linkar no NN!");
+                        console.log("Erro ao linkar no NN!");
                     }
                 })
 
