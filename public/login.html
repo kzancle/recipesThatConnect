@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="lrContainer">
         <div class="bannerHalf">
@@ -37,6 +38,7 @@
         </div>
     </div>
 </body>
+
 </html>
 <script>
 
@@ -82,7 +84,7 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.RECEITA = JSON.stringify(json.receita)
-                    
+
                     setTimeout(function () {
                         window.location = "./dashboard/main.html";
                     }, 1000); // apenas para exibir o loading
@@ -90,7 +92,14 @@
 
             } else {
 
-                console.log("Houve um erro ao tentar realizar o login!");
+
+                cardErro.style.display = "block";
+                mensagem_erro.innerHTML =
+                    "E-mail ou senha inválidos!";
+                return false
+
+                setInterval(sumirMensagem, 5000);
+
 
                 resposta.text().then(texto => {
                     console.error(texto);

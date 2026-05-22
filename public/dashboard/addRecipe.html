@@ -92,7 +92,7 @@
                     </div>
                     <div class="modoPreparo">
                         <p>Modo de preparo</p>
-                        <input type="text" id="inputPreparo">
+                        <textarea type="text" id="inputPreparo" placeholder="Primeiro..."></textarea>
                     </div>
                     <button type="button" onclick="cadastrar()">CADASTRAR</button>
                 </form>
@@ -230,6 +230,7 @@
                     console.log(erro);
                 });
         }
+        alert("Receita cadastrada com sucesso!")
         jsonIngredientes = []
         listaNomes = []
     }

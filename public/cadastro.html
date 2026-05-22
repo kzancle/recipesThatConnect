@@ -50,32 +50,22 @@
 
 <script>
 
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  // let listaEmpresasCadastradas = [];
-
   function cadastrar() {
-    // aguardar();
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    // var codigoVar = codigo_input.value;
-    // var idEmpresaVincular
 
-    // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
-      // codigoVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+        "Todos os campos devem sem preenchidos!";
 
       // finalizarAguardar();
       return false;
@@ -83,18 +73,37 @@
       setInterval(sumirMensagem, 5000);
     }
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-    //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-    //     idEmpresaVincular = listaEmpresasCadastradas[i].id
-    //     console.log("Código de ativação válido.");
-    //     break;
-    //   } else {
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-    //     finalizarAguardar();
-    //   }
-    // }
+    if (emailVar.length > 50 || emailVar.includes(" ") || !emailVar.includes("@") ||
+      !emailVar.includes(".") || emailVar.lastIndexOf(".") < emailVar.lastIndexOf("@")) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Email inválido!";
+
+      // finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    const reNum = new RegExp("[0-9]");
+
+    if (senhaVar.length < 8 || !reNum.test(senhaVar)) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+      "A senha deve ter no mínimo 8 caracteres e um número!";
+      return false
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    if(senhaVar != confirmacaoSenhaVar){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+      "As senhas não coincidem!";
+      return false
+    }else {
+      setInterval(sumirMensagem, 5000);
+    }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -137,26 +146,6 @@
 
     return false;
   }
-
-  // Listando empresas cadastradas 
-  // function listar() {
-  //   fetch("/empresas/listar", {
-  //     method: "GET",
-  //   })
-  //     .then(function (resposta) {
-  //       resposta.json().then((empresas) => {
-  //         empresas.forEach((empresa) => {
-  //           listaEmpresasCadastradas.push(empresa);
-
-  //           console.log("listaEmpresasCadastradas")
-  //           console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-  //         });
-  //       });
-  //     })
-  //     .catch(function (resposta) {
-  //       console.log(`#ERRO: ${resposta}`);
-  //     });
-  // }
 
   function sumirMensagem() {
     cardErro.style.display = "none";
