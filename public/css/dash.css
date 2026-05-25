@@ -28,12 +28,12 @@ body{
     width: 100vw;
     display: flex;
     flex-direction: row;
-    margin-top: 25px;
+    margin-top: 10px;
     margin-left: 15px;
 }
 
 .navbar{
-    min-height: 100vh;
+    min-height: 98vh;
     width: 80px;
     background-color: var(--color10);
     border-radius: 20px;
