@@ -342,6 +342,17 @@ form button{
 
 /* HOVERS */
 
-.recipe{
+.recipe:hover{
     cursor: pointer;
+    scale: 1.05;
+}
+
+.receitaTitle{
+    font-size: 2em;
+    margin: 10px 0px 30px 0px;
+    background-color: var(--color10);
+    padding: 10px 20px;
+    color: var(--textWhite);
+    border-radius: 10px;
+    font-weight: 500;
 }
