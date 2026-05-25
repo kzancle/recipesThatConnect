@@ -53,6 +53,7 @@
 
 .navBar ul li a{
     color: var(--textBlack);
+    transition: 0.3s ease-out;
 }
 
 .navBar img{
@@ -266,6 +267,7 @@ form button{
 button:hover, #entrarAnch:hover{
     background-color: var(--color10hover);
     cursor: pointer;
+    transition: 0.2s
 }
 
 .navBar ul li:hover{
@@ -288,4 +290,18 @@ button:hover, #entrarAnch:hover{
 
 .topic:hover{
     scale: 1.1;
+    transition: 0.2s
+}
+
+footer{
+    background-color: #ccc;
+    margin-top: 100px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+footer img{
+    width: 300px;
 }

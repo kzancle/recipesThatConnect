@@ -41,6 +41,7 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    position: fixed;
 }
 
 .navbar img{
@@ -113,6 +114,7 @@ header{
     align-items: center;
     padding-left: 10px;
     background-color: var(--textWhite);
+    transition: 0.2s;
 }
 
 .recipe img{
@@ -355,4 +357,9 @@ form button{
     color: var(--textWhite);
     border-radius: 10px;
     font-weight: 500;
+}
+
+.navbar ul li:hover, .exit:hover{
+    scale: 1.1;
+    transition: 0.2s;
 }
