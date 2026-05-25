@@ -16,7 +16,7 @@ ocasiao VARCHAR(30) NOT NULL,
 dtCriacao DATETIME DEFAULT CURRENT_TIMESTAMP(),
 fkusuario INT,
 CONSTRAINT chTipo CHECK (tipo IN ('entrada', 'prato principal', 'sobremesa', 'bebida', 'lanche','outro')),
-CONSTRAINT chOcasiao CHECK (ocasiao IN ('data comemorativa', 'dia a dia', 'fitness', 'date', 'outro')),
+CONSTRAINT chOcasiao CHECK (ocasiao IN ('data festiva', 'dia a dia', 'fitness', 'date', 'outro')),
 FOREIGN KEY (fkusuario) REFERENCES usuario(id)
 );
 
@@ -31,7 +31,7 @@ fkreceita INT,
 fkingrediente INT,
 quantidade DECIMAL(10,2),
 unidadeqtd VARCHAR(20),
-CONSTRAINT  chUnidade CHECK(unidadeqtd IN ('ml','L', 'g', 'kg', 'mg', 'xicara', 'colher de sopa', 'colher de cha', 'unidade')),	 	
+CONSTRAINT  chUnidade CHECK(unidadeqtd IN ('ml','L', 'g', 'kg', 'mg', 'xicara', 'colher de sopa', 'colher de cha','colher de sobremesa','unidade')),	 	
 FOREIGN KEY (fkreceita) REFERENCES receita(id),
 FOREIGN KEY (fkingrediente) REFERENCES ingrediente(id)
 );

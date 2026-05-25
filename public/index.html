@@ -13,12 +13,12 @@
             <section class="navBarArea">
                 <div class="navBar">
                     <figure>
-                        <img src="./assets/img/fullLogo.png" alt="">
+                        <a href=""><img src="./assets/img/fullLogo.png" alt=""></a>
                     </figure>
                     <ul>
-                        <li>Home</li>
-                        <li>Contexto</li>
-                        <li>Proposta</li>
+                        <li><a href="#context">Contexto</a></li>
+                        <li><a href="#purpose">Proposta</a></li>
+                        <li>Sobre Mim</li>
                         <li>Créditos</li>
                     </ul>
                     <a id="entrarAnch" href="./login.html">ENTRAR</a>
@@ -34,10 +34,10 @@
             </div>
         </header>
         <main>
-            <div class="context">
+            <div class="context" id="context">
                 <h2>Importância das Receitas</h2>
                 <div class="recipesInfo">
-                    <figure>
+                    <figure class="rotate">
                         <img src="./assets/img/foodPlate.png" alt="">
                     </figure>
                     <p>
@@ -50,7 +50,7 @@
                     </p>
                 </div>
             </div>
-            <div class="purpose">
+            <div class="purpose" id="purpose">
                 <h2>Proposta</h2>
                 <div class="topic">
                     <figure>
@@ -70,7 +70,7 @@
                     </figure>
                     <p>Crie momentos inesquecíveis com quem você ama.</p>
                 </div>
-                <button>TESTE JÁ</button>
+                <button onclick="window.location = './cadastro.html'">TESTE JÁ</button>
             </div>
         </main>
         <footer>

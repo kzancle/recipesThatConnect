@@ -51,11 +51,15 @@
     align-items: center;
 }
 
+.navBar ul li a{
+    color: var(--textBlack);
+}
+
 .navBar img{
     width: 120px;
 }
 
-.navBar a{
+#entrarAnch{
     background-color: var(--color10);
     width: 100px;
     height: 30px;
@@ -268,4 +272,20 @@ button:hover, #entrarAnch:hover{
     opacity: 80%;
     cursor: pointer;
     border-bottom: 0.5px solid var(--color10);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.rotate:hover {
+  animation: rotate 20s linear infinite;
+}
+
+.topic:hover{
+    scale: 1.1;
 }
