@@ -16,8 +16,16 @@ function cadastrar(nome) {
     return database.executar(instrucaoSql);
 }
 
+ function buscarIngrediente(nomeIngrediente) {
+
+   var instrucaoSql = `SELECT * FROM ingrediente WHERE nome = '${nomeIngrediente}';`;
+
+   console.log("Executando a instrução SQL: \n" + instrucaoSql);
+   return database.executar(instrucaoSql);
+ }
+
 
 module.exports = {
-//   buscarReceitas,
+  buscarIngrediente,
   cadastrar
 }

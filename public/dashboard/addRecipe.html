@@ -144,7 +144,7 @@
                 ocasiao: ocasiao,
                 modoPreparo: modoPreparo,
                 idUsuario: idUsuario
-                
+
             })
         })
             .then(function (resposta) {
@@ -169,34 +169,54 @@
 
         for (let i = 0; i < jsonIngredientes.length; i++) {
 
-            await fetch("/ingrediente/cadastrar", {
-                method: "POST",
+            const getIngrediente = await fetch(`/ingrediente/buscar/${jsonIngredientes[i].nome}`, {
+                method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    nome: jsonIngredientes[i].nome,
-
-                })
             })
-                .then(function (resposta) {
-                    console.log(resposta);
-                    if (resposta.ok) {
-                        console.log("Ingrediente cadastrado com sucesso!");
-                        return resposta.json();
-                    } else {
-                        console.log("Erro ao cadastrar Ingrediente!");
-                    }
-                })
+            console.log(getIngrediente)
+            let jsonGetIngrediente = [];
 
-                .then(function (json) {
-                    idIngredienteCadastrado = json.insertId;
-                    console.log(`ID DO INGREDIENTE CADASTRADO: ${idIngredienteCadastrado}`);
+            if (getIngrediente.status != 204) {
+                jsonGetIngrediente = await getIngrediente.json();
+            }
 
+            if (jsonGetIngrediente.length > 0) {
+                idIngredienteCadastrado = jsonGetIngrediente[0].id;
+            } else {
+
+                await fetch("/ingrediente/cadastrar", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        nome: jsonIngredientes[i].nome,
+
+                    })
                 })
-                .catch(function (erro) {
-                    console.log(erro);
-                });
+                    .then(function (resposta) {
+                        console.log(resposta);
+                        if (resposta.ok) {
+                            console.log("Ingrediente cadastrado com sucesso!");
+                            return resposta.json();
+                        } else {
+                            console.log("Erro ao cadastrar Ingrediente!");
+                        }
+                    })
+
+                    .then(function (json) {
+                        idIngredienteCadastrado = json.insertId;
+                        console.log(`ID DO INGREDIENTE CADASTRADO: ${idIngredienteCadastrado}`);
+
+                    })
+                    .catch(function (erro) {
+                        console.log(erro);
+                    });
+            }
+
+
 
 
             await fetch("/receitaIngrediente/cadastrar", {
@@ -220,12 +240,6 @@
                         console.log("Erro ao linkar no NN!");
                     }
                 })
-
-                // .then(function (json) {
-                //     let idIngredienteReceita = json.insertId;
-                //     console.log(idIngredienteReceita);
-
-                // })
                 .catch(function (erro) {
                     console.log(erro);
                 });
