@@ -95,6 +95,12 @@
                         <textarea type="text" id="inputPreparo" placeholder="Primeiro..."></textarea>
                     </div>
                     <button type="button" onclick="cadastrar()">CADASTRAR</button>
+                    <div id="div_erros_login"></div>
+                    <div class="alerta_erro">
+                        <div class="card_erro" id="cardErro">
+                            <span id="mensagem_erro"></span>
+                        </div>
+                    </div>
                 </form>
             </div>
         </main>
@@ -111,6 +117,14 @@
         let nome = ingredienteInput.value
         let quantidade = Number(quantidadeInput.value)
         let unidadeMedida = unidadeInput.value
+
+        if (nome == "" || quantidade == "" || unidadeMedida == "") {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "Todos os campos devem ser preenchidos para inserir um ingrediente!";
+            setInterval(sumirMensagem, 4000);
+            return false
+        }
         listaNomes.push(nome)
         jsonIngredientes.push(
             {
@@ -132,6 +146,29 @@
         let idReceitaCadastrada
         let idIngredienteCadastrado
         let idIngredienteReceita
+
+        if (nome == "" && jsonIngredientes.length < 1) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "A receita deve ter um nome e ingredientes!";
+            setInterval(sumirMensagem, 4000);
+            return false
+        }
+        else if (nome == "") {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "A receita deve ter um nome!";
+            setInterval(sumirMensagem, 4000);
+            return false
+        }
+        else if (jsonIngredientes.length < 1) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "A receita deve ter ingredientes!";
+            setInterval(sumirMensagem, 4000);
+            return false
+        }
+
 
         await fetch("/receita/cadastrar", {
             method: "POST",
@@ -247,5 +284,9 @@
         alert("Receita cadastrada com sucesso!")
         jsonIngredientes = []
         listaNomes = []
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none";
     }
 </script>
