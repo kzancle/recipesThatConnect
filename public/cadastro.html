@@ -44,6 +44,12 @@
         <span id="mensagem_erro"></span>
       </div>
     </div>
+    <div class="alerta_sucesso">
+      <div class="card_sucesso" id="cardSucesso">
+        <img src="./assets/img/check.png" alt="">
+        <span id="mensagem_sucesso"></span>
+      </div>
+    </div>
   </div>
 </body>
 
@@ -125,24 +131,23 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "flex";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          cardSucesso.style.display = "flex"
+          mensagem_sucesso.innerHTML = "Cadastro realizado com sucesso. Redirecionando para a tela de login!";
+          setInterval(sumirMensagem2, 5000)
 
           setTimeout(() => {
             window.location = "login.html";
           }, "2000");
 
           limparFormulario();
-          finalizarAguardar();
+          // finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
+        // finalizarAguardar();
       });
 
     return false;
@@ -150,5 +155,9 @@
 
   function sumirMensagem() {
     cardErro.style.display = "none";
+  }
+
+  function sumirMensagem2() {
+    cardSucesso.style.display = "none";
   }
 </script>

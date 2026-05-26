@@ -37,6 +37,12 @@
                 <span id="mensagem_erro"></span>
             </div>
         </div>
+        <div class="alerta_sucesso">
+            <div class="card_sucesso" id="cardSucesso">
+                <img src="./assets/img/check.png" alt="">
+                <span id="mensagem_sucesso"></span>
+            </div>
+        </div>
     </div>
 </body>
 
@@ -87,6 +93,10 @@
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.RECEITA = JSON.stringify(json.receita)
 
+                    cardSucesso.style.display = "flex"
+                    mensagem_sucesso.innerHTML = "Login realizado com sucesso!";
+                    setInterval(sumirMensagem2, 5000)
+
                     setTimeout(function () {
                         window.location = "./dashboard/main.html";
                     }, 1000); // apenas para exibir o loading
@@ -118,6 +128,10 @@
 
     function sumirMensagem() {
         cardErro.style.display = "none"
+    }
+
+    function sumirMensagem2() {
+        cardSucesso.style.display = "none"
     }
 
 </script>

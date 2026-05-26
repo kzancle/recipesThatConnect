@@ -24,7 +24,7 @@
 .container{
     width: 100vw;
     height: fit-content;
-    background-color: var(--color60);
+    background-color: var(--color60); 
 }
 
 .navBarArea{
@@ -97,6 +97,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 999;
 }
 
 /* MAIN INSTITUCIONAL */
@@ -106,6 +107,7 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    scroll-behavior: smooth;
 }
 
 .context{
@@ -233,6 +235,8 @@ form button{
     margin: 30px 0 0  30px;
 }
 
+/* ERROS E SUCESSOS */
+
 #alerta{
     color: red;
 }
@@ -263,6 +267,37 @@ form button{
 }
 
 .card_erro img{
+    width: 30px;
+}
+
+/* -------------- */
+
+.alerta_sucesso{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card_sucesso {
+  display: none;
+  background-color: #93e762;
+  color: var(--textWhite);
+  width: 30%;
+  position: fixed;
+  border-radius: 4px;
+  padding: 10px;
+  margin-right: 10%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.card_sucesso #mensagem_sucesso{
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.card_sucesso img{
     width: 30px;
 }
 
