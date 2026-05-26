@@ -13,12 +13,6 @@
     <div class="bannerHalf">
       <div class="exitBtn">
         <a href="./login.html"><img src="./assets/img/exitIcon.png" alt=""></a>
-        <div id="div_erros_login"></div>
-        <div class="alerta_erro">
-          <div class="card_erro" id="cardErro">
-            <span id="mensagem_erro"></span>
-          </div>
-        </div>
       </div>
     </div>
     <div class="formHalf">
@@ -43,6 +37,13 @@
         <button type="button" onclick="cadastrar()">Cadastrar</button>
       </form>
     </div>
+    <div id="div_erros_login"></div>
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro">
+        <img src="./assets/img/mark.png" alt="">
+        <span id="mensagem_erro"></span>
+      </div>
+    </div>
   </div>
 </body>
 
@@ -63,11 +64,11 @@
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
     ) {
-      cardErro.style.display = "block";
+      cardErro.style.display = "flex";
       mensagem_erro.innerHTML =
         "Todos os campos devem sem preenchidos!";
 
-      // finalizarAguardar();
+      setInterval(sumirMensagem, 5000);
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
@@ -75,11 +76,11 @@
 
     if (emailVar.length > 50 || emailVar.includes(" ") || !emailVar.includes("@") ||
       !emailVar.includes(".") || emailVar.lastIndexOf(".") < emailVar.lastIndexOf("@")) {
-      cardErro.style.display = "block";
+      cardErro.style.display = "flex";
       mensagem_erro.innerHTML =
         "Email inválido!";
 
-      // finalizarAguardar();
+      setInterval(sumirMensagem, 5000);
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
@@ -88,20 +89,20 @@
     const reNum = new RegExp("[0-9]");
 
     if (senhaVar.length < 8 || !reNum.test(senhaVar)) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-      "A senha deve ter no mínimo 8 caracteres e um número!";
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "A senha deve ter no mínimo 8 caracteres e um número!";
+      setInterval(sumirMensagem, 5000);
       return false
     } else {
       setInterval(sumirMensagem, 5000);
     }
 
-    if(senhaVar != confirmacaoSenhaVar){
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-      "As senhas não coincidem!";
+    if (senhaVar != confirmacaoSenhaVar) {
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "As senhas não coincidem!";
+      setInterval(sumirMensagem, 5000);
       return false
-    }else {
+    } else {
       setInterval(sumirMensagem, 5000);
     }
 
@@ -124,7 +125,7 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
+          cardErro.style.display = "flex";
 
           mensagem_erro.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";

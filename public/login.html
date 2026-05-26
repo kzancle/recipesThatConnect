@@ -33,6 +33,7 @@
         <div id="div_erros_login"></div>
         <div class="alerta_erro">
             <div class="card_erro" id="cardErro">
+                <img src="./assets/img/mark.png" alt="">
                 <span id="mensagem_erro"></span>
             </div>
         </div>
@@ -50,9 +51,10 @@
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
+            cardErro.style.display = "flex"
             mensagem_erro.innerHTML = "Todos os campos devem ser preenchidos para realizar o login!";
             // finalizarAguardar();
+            setInterval(sumirMensagem, 5000)
             return false;
         }
         else {
@@ -93,7 +95,7 @@
             } else {
 
 
-                cardErro.style.display = "block";
+                cardErro.style.display = "flex";
                 mensagem_erro.innerHTML =
                     "E-mail ou senha inválidos!";
                 return false
