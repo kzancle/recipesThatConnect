@@ -329,7 +329,7 @@
     function caracteresRestante(item){
         let restante = 400-item.length
         if(restante <= 0){
-            restanteCaracteres.innerHTML = "Limite de caracteres atingido!"
+            restanteCaracteres.innerHTML = `Limite de caracteres atingido! Elimine ${item.length-400} caracteres`
         }else{
             restanteCaracteres.innerHTML = restante
         }
