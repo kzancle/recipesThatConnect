@@ -17,13 +17,10 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-var avisosRouter = require("./src/routes/avisos");
-var medidasRouter = require("./src/routes/medidas");
 var receitaRouter = require("./src/routes/receita");
 var ingredienteRouter = require("./src/routes/ingrediente");
 var kpiRouter = require("./src/routes/kpis");
 var receitaIngredienteRouter = require("./src/routes/receitaIngrediente");
-var empresasRouter = require("./src/routes/empresas");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,13 +30,10 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
-app.use("/avisos", avisosRouter);
-app.use("/medidas", medidasRouter);
 app.use("/receita", receitaRouter);
 app.use("/ingrediente", ingredienteRouter);
 app.use("/kpis", kpiRouter);
 app.use("/receitaIngrediente", receitaIngredienteRouter);
-app.use("/empresas", empresasRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
