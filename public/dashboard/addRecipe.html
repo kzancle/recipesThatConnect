@@ -36,6 +36,19 @@
             </div>
         </header>
         <main class="addRecipeDelimiter">
+            <div id="div_erros_login"></div>
+            <div class="alerta_erro">
+                <div class="card_erro" id="cardErro">
+                    <img src="../assets/img/mark.png" alt="">
+                    <span id="mensagem_erro"></span>
+                </div>
+            </div>
+            <div class="alerta_sucesso">
+                <div class="card_sucesso" id="cardSucesso">
+                    <img src="../assets/img/check.png" alt="">
+                    <span id="mensagem_sucesso"></span>
+                </div>
+            </div>
             <div class="formContainer">
                 <h1>Cadastre uma nova receita</h1>
                 <form>
@@ -67,21 +80,30 @@
                         </div>
                     </div>
                     <div class="ingredientBox">
-                        <p>Ingrediente</p>
+                        <p>Ingredientes</p>
                         <div class="ingredientInputs">
-                            <input type="text" id="ingredienteInput">
-                            <input type="number" id="quantidadeInput">
-                            <select id="unidadeInput">
-                                <option value="unidade">Unidade</option>
-                                <option value="ml">ml</option>
-                                <option value="L">L</option>
-                                <option value="g">g</option>
-                                <option value="kg">kg</option>
-                                <option value="mg">mg</option>
-                                <option value="xicara">xícara</option>
-                                <option value="colhSopa">colher de sopa</option>
-                                <option value="colhcha">colher de chá</option>
-                            </select>
+                            <div class="boxIng">
+                                <span>Nome</span>
+                                <input type="text" id="ingredienteInput" placeholder="ex: fermento">
+                            </div>
+                            <div class="boxIng">
+                                <span>Quantidade</span>
+                                <input type="number" id="quantidadeInput" placeholder="ex: 1">
+                            </div>
+                            <div class="boxIng">
+                                <span>Unidade de Medida</span>
+                                <select id="unidadeInput">
+                                    <option value="unidade">Unidade</option>
+                                    <option value="ml">ml</option>
+                                    <option value="L">L</option>
+                                    <option value="g">g</option>
+                                    <option value="kg">kg</option>
+                                    <option value="mg">mg</option>
+                                    <option value="xicara">xícara</option>
+                                    <option value="colhSopa">colher de sopa</option>
+                                    <option value="colhcha">colher de chá</option>
+                                </select>
+                            </div>
                             <button type="button" onclick="inserirIngredienteNoJson()">Inserir</button>
                         </div>
                         <div class="ingredientsInserted">
@@ -94,13 +116,7 @@
                         <p>Modo de preparo</p>
                         <textarea type="text" id="inputPreparo" placeholder="Primeiro..."></textarea>
                     </div>
-                    <button type="button" onclick="cadastrar()">CADASTRAR</button>
-                    <div id="div_erros_login"></div>
-                    <div class="alerta_erro">
-                        <div class="card_erro" id="cardErro">
-                            <span id="mensagem_erro"></span>
-                        </div>
-                    </div>
+                    <button type="button" onclick="cadastrar()" id="cadastroReceiraBtn">CADASTRAR</button>
                 </form>
             </div>
         </main>
@@ -111,7 +127,6 @@
 
 </html>
 <script>
-    let listaNomes = []
     let jsonIngredientes = []
     function inserirIngredienteNoJson() {
         let nome = ingredienteInput.value
@@ -119,13 +134,13 @@
         let unidadeMedida = unidadeInput.value
 
         if (nome == "" || quantidade == "" || unidadeMedida == "") {
-            cardErro.style.display = "block";
+            cardErro.style.display = "flex";
             mensagem_erro.innerHTML =
                 "Todos os campos devem ser preenchidos para inserir um ingrediente!";
             setInterval(sumirMensagem, 4000);
             return false
         }
-        listaNomes.push(nome)
+        ingredientsOutput.innerHTML = ""
         jsonIngredientes.push(
             {
                 "nome": nome,
@@ -133,7 +148,10 @@
                 "unidadeMedida": unidadeMedida
             }
         )
-        ingredientsOutput.innerHTML = listaNomes
+        for (let i = 0; i < jsonIngredientes.length; i++) {
+            ingredientsOutput.innerHTML += `<p>${jsonIngredientes[i].nome}<p>, `
+
+        }
     }
 
     async function cadastrar() {
@@ -148,21 +166,21 @@
         let idIngredienteReceita
 
         if (nome == "" && jsonIngredientes.length < 1) {
-            cardErro.style.display = "block";
+            cardErro.style.display = "flex";
             mensagem_erro.innerHTML =
                 "A receita deve ter um nome e ingredientes!";
             setInterval(sumirMensagem, 4000);
             return false
         }
         else if (nome == "") {
-            cardErro.style.display = "block";
+            cardErro.style.display = "flex";
             mensagem_erro.innerHTML =
                 "A receita deve ter um nome!";
             setInterval(sumirMensagem, 4000);
             return false
         }
         else if (jsonIngredientes.length < 1) {
-            cardErro.style.display = "block";
+            cardErro.style.display = "flex";
             mensagem_erro.innerHTML =
                 "A receita deve ter ingredientes!";
             setInterval(sumirMensagem, 4000);
@@ -281,15 +299,21 @@
                     console.log(erro);
                 });
         }
-        alert("Receita cadastrada com sucesso!")
+        cardSucesso.style.display = "flex"
+        mensagem_sucesso.innerHTML = "Receita cadastrada com sucesso!";
+        setInterval(sumirMensagem2, 3000)
         jsonIngredientes = []
-        listaNomes = []
+
         setTimeout(function () {
             window.location = "./showRecipes.html";
-        }, 2000);
+        }, 4000);
     }
 
     function sumirMensagem() {
         cardErro.style.display = "none";
+    }
+
+    function sumirMensagem2() {
+        cardSucesso.style.display = "none"
     }
 </script>

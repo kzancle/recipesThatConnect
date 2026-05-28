@@ -48,19 +48,19 @@
           <div class="kpi">
             <h2>Tipos</h2>
             <div class="value">
-              <p>Entrada:</p><span id="outEntrada">0</span>
+              <span class="legend" id="entradaLegend"></span><p>Entrada:</p><span id="outEntrada">0</span>
             </div>
             <div class="value">
-              <p>Prato Principal:</p><span id="outPratoPrincipal">0</span>
+              <span class="legend" id="pratoPrincipalLegend"></span><p>Prato Principal:</p><span id="outPratoPrincipal">0</span>
             </div>
             <div class="value">
-              <p>Sobremesa:</p><span id="outSobremesa">0</span>
+              <span class="legend" id="sobremesaLegend"></span><p>Sobremesa:</p><span id="outSobremesa">0</span>
             </div>
             <div class="value">
-              <p>Bebida:</p><span id="outBebida">0</span>
+              <span class="legend" id="bebidaLegend"></span><p>Bebida:</p><span id="outBebida">0</span>
             </div>
             <div class="value">
-              <p>Lanche:</p><span id="outLanche">0</span>
+              <span class="legend" id="lancheLegend"></span><p>Lanche:</p><span id="outLanche">0</span>
             </div>
           </div>
           <div class="graphic">
@@ -71,19 +71,19 @@
           <div class="kpi">
             <h2>Ocasiões</h2>
             <div class="value">
-              <p>Data Festiva:</p><span id="outComemorativa">0</span>
+              <span class="legend" id="dataFestivaLegend"></span><p>Data Festiva:</p><span id="outComemorativa">0</span>
             </div>
             <div class="value">
-              <p>Dia a Dia:</p><span id="outDiaDia">0</span>
+              <span class="legend" id="diaDiaLegend"></span><p>Dia a Dia:</p><span id="outDiaDia">0</span>
             </div>
             <div class="value">
-              <p>Fitness:</p><span id="outFitness">0</span>
+              <span class="legend" id="fitnessLegend"></span><p>Fitness:</p><span id="outFitness">0</span>
             </div>
             <div class="value">
-              <p>Date:</p><span id="outDate">0</span>
+              <span class="legend" id="dateLegend"></span><p>Date:</p><span id="outDate">0</span>
             </div>
             <div class="value">
-              <p>Outro:</p><span id="outOutro">0</span>
+              <span class="legend" id="outroLegend"></span><p>Outro:</p><span id="outOutro">0</span>
             </div>
           </div>
           <div class="graphic">
@@ -168,7 +168,7 @@
 
     console.log(sessionStorage.ID_USUARIO)
 
-    let vetorOcasiao = ['Data Comemorativa', 'Dia a Dia', 'Fitness', 'Date', 'Outro']
+    let vetorOcasiao = ['Data Festiva', 'Dia a Dia', 'Fitness', 'Date', 'Outro']
 
     for (let i = 0; i < vetorOcasiao.length; i++) {
 

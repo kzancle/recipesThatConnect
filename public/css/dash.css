@@ -144,6 +144,7 @@ header{
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    flex-direction: column;
 }
 
 .formContainer{
@@ -151,11 +152,10 @@ header{
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 80%;
-    background-color: #fff;
+    height: 100%;
     border-radius: 20px;
     padding-top: 20px;
-    gap: 70px;
+    gap: 30px;
 }
 
 .formContainer input{
@@ -168,7 +168,16 @@ header{
 
 .formContainer select, button{
     border-radius: 10px;
-    padding: 5px 10px;
+    padding: 5px 20px;
+}
+
+.formContainer h1{
+    background-color: var(--color10);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: var(--textWhite);
+    text-transform: capitalize;
+    font-weight: 500;
 }
 
 form{
@@ -176,7 +185,7 @@ form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 30px;
 }
 
 form button{
@@ -186,7 +195,14 @@ form button{
 }
 
 .iptBox, .ingredient{
-    width: 60%;  
+    width: 80%;  
+}
+
+.iptBox{
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px #aaa;
 }
 
 .select{
@@ -196,15 +212,22 @@ form button{
 .select select{
     width: 100%;
     height: 30px;
+    background-color: var(--color10);
+    color: var(--textWhite);
+    font-size: 1.05em;
 }
 
 .modoPreparo{
-    width: 60%;
+    width: 80%;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px #aaa;
 }
 
 .modoPreparo textarea{
     width: 100%;
-    padding-bottom: 200px;
+    padding-bottom: 150px;
     margin-top: 20px;
     border: 1px solid black;
     border-radius: 20px;
@@ -213,22 +236,52 @@ form button{
 }
 
 .selectsBox{
-    width: 60%;
+    width: 80%;
     display: flex;
     justify-content: center;
     gap: 20px;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px #aaa;
 }
 
 .ingredientBox{
     display: flex;
     flex-direction: column; 
-    width: 60%;
+    width: 80%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: 2px 2px #aaa;
+}
+
+.ingredientBox select{
+    background-color: var(--color10);
+    color: var(--textWhite);
+    font-size: 1.05em;
 }
 
 .ingredientInputs{
     display: flex;
     width: 100%;
-    gap: 20px;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.ingredientInputs button{
+    width: 20%;
+    height: fit-content;
+    margin-top: 20px;
+    padding: 8px 10px;
+}
+
+.boxIng{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 70px;
 }
 
 .ingredientsOutput{
@@ -281,6 +334,7 @@ form button{
     display: flex;
     justify-content: space-evenly;
     font-weight: 600;
+    align-items: center;
 }
 
 .value p{
@@ -350,7 +404,6 @@ form button{
 }
 
 .receitaTitle{
-    font-size: 2em;
     margin: 10px 0px 30px 0px;
     background-color: var(--color10);
     padding: 10px 20px;
@@ -363,3 +416,131 @@ form button{
     scale: 1.1;
     transition: 0.2s;
 }
+
+#cadastroReceiraBtn{
+    padding: 10px 60px;
+    font-size: 1.3em;
+}
+
+#ingredientsOutput{
+    border: 1px solid black;
+    width: 100%;
+    height: 100px;
+    border-radius: 20px;
+    padding-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#alerta{
+    color: red;
+}
+
+.alerta_erro{
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 100%;
+}
+
+.card_erro {
+  display: none;
+  background-color: #f35c5c;
+  color: var(--textWhite);
+  width: 50%;
+  position: fixed;
+  border-radius: 4px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+  justify-self: center;
+  
+}
+
+.card_erro #mensagem_erro{
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.card_erro img{
+    width: 30px;
+}
+
+/* -------------- */
+
+.alerta_sucesso{
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 100%;
+}
+
+.card_sucesso {
+  display: none;
+  background-color: #93e762;
+  color: var(--textWhite);
+  width: 50%;
+  position: fixed;
+  border-radius: 4px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+  justify-self: center;
+}
+
+.card_sucesso #mensagem_sucesso{
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.card_sucesso img{
+    width: 30px;
+}
+
+.legend{
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    border: 1px solid black;
+}
+
+/* COR LEGENDAS */
+
+#entradaLegend{
+background-color: #FF6384;
+}
+#pratoPrincipalLegend{
+background-color: #36A2EB;
+}
+#sobremesaLegend{
+background-color: #FFCE56;
+}
+#bebidaLegend{
+background-color: #4BC0C0;
+}
+#lancheLegend{
+background-color: #9966FF;
+}
+
+#dataFestivaLegend{
+background-color: #FF6384;
+}
+#diaDiaLegend{
+background-color: #36A2EB;
+}
+#fitnessLegend{
+background-color: #FFCE56;
+}
+#dateLegend{
+background-color: #4BC0C0;
+}
+#outroLegend{
+background-color: #9966FF;
+}
+
+.value:hover{
+    scale: 1.2;
+}
+
