@@ -6,6 +6,7 @@
     --color10: #FE7F05;
     --textWhite: #fff;
     --textBlack: #000;
+    --color10hover: #c96303;
 }
 
 *{
@@ -542,5 +543,9 @@ background-color: #9966FF;
 
 .value:hover{
     scale: 1.2;
+}
+
+button:hover{
+    background-color: var(--color10hover);
 }
 
