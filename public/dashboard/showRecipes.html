@@ -150,7 +150,7 @@
                 document.getElementById("preparoBox").innerHTML += `${json[0].preparo}`
                 json.forEach(item => {
                     document.getElementById("ingredientBox").innerHTML +=
-                        `${item.quantidade} ${item.unidadeqtd} de ${item.nome}<br>`
+                        `${Number(item.quantidade).toFixed(1)} ${item.unidadeqtd} de ${item.nome}<br>`
                 });
                 recipeScreen.style.display = 'flex'
             })
