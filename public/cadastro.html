@@ -81,7 +81,7 @@
     }
 
     if (emailVar.length > 50 || emailVar.includes(" ") || !emailVar.includes("@") ||
-      !emailVar.includes(".") || emailVar.lastIndexOf(".") < emailVar.lastIndexOf("@")) {
+      !emailVar.includes(".") || emailVar.lastIndexOf(".") < emailVar.lastIndexOf("@") || emailVar.lastIndexOf("@") == 0) {
       cardErro.style.display = "flex";
       mensagem_erro.innerHTML =
         "Email inválido!";
