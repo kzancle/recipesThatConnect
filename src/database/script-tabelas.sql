@@ -3,17 +3,17 @@ USE db_rtc;
 
 CREATE TABLE usuario(
 id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-nome VARCHAR(30) NOT NULL,
-email VARCHAR(40) UNIQUE NOT NULL,
-senha VARCHAR(130) NOT NULL
+nome VARCHAR(50) NOT NULL,
+email VARCHAR(60) UNIQUE NOT NULL,
+senha VARCHAR(120) NOT NULL
 );
 
 CREATE TABLE receita(
 id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 nome VARCHAR(50) NOT NULL,
-tipo VARCHAR(30) NOT NULL,
-ocasiao VARCHAR(30) NOT NULL,
-preparo VARCHAR(255),
+tipo VARCHAR(45) NOT NULL,
+ocasiao VARCHAR(45) NOT NULL,
+preparo VARCHAR(400),
 dtCriacao DATETIME DEFAULT CURRENT_TIMESTAMP(),
 fkusuario INT,
 CONSTRAINT chTipo CHECK (tipo IN ('entrada', 'prato principal', 'sobremesa', 'bebida', 'lanche','outro')),
@@ -31,7 +31,7 @@ id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 fkreceita INT,
 fkingrediente INT,
 quantidade DECIMAL(10,2),
-unidadeqtd VARCHAR(20),
+unidadeqtd VARCHAR(45),
 CONSTRAINT  chUnidade CHECK(unidadeqtd IN ('ml','L', 'g', 'kg', 'mg', 'xicara', 'colher de sopa', 'colher de cha','colher de sobremesa','unidade')),	 	
 FOREIGN KEY (fkreceita) REFERENCES receita(id),
 FOREIGN KEY (fkingrediente) REFERENCES ingrediente(id)

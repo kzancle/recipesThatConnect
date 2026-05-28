@@ -100,8 +100,9 @@
                                     <option value="kg">kg</option>
                                     <option value="mg">mg</option>
                                     <option value="xicara">xícara</option>
-                                    <option value="colhSopa">colher de sopa</option>
-                                    <option value="colhcha">colher de chá</option>
+                                    <option value="colher de sopa">colher de sopa</option>
+                                    <option value="colher de cha">colher de chá</option>
+                                    <option value="colher de sobremesa">colher de sobremesa</option>
                                 </select>
                             </div>
                             <button type="button" onclick="inserirIngredienteNoJson()">Inserir</button>
@@ -114,7 +115,8 @@
                     </div>
                     <div class="modoPreparo">
                         <p>Modo de preparo</p>
-                        <textarea type="text" id="inputPreparo" placeholder="Primeiro..."></textarea>
+                        <textarea type="text" id="inputPreparo" placeholder="Primeiro..." oninput="caracteresRestante(inputPreparo.value)"></textarea>
+                        <span>Caracteres Restantes: </span><span id="restanteCaracteres"></span>
                     </div>
                     <button type="button" onclick="cadastrar()" id="cadastroReceiraBtn">CADASTRAR</button>
                 </form>
@@ -183,6 +185,13 @@
             cardErro.style.display = "flex";
             mensagem_erro.innerHTML =
                 "A receita deve ter ingredientes!";
+            setInterval(sumirMensagem, 4000);
+            return false
+        }
+        else if (modoPreparo.length > 255) {
+            cardErro.style.display = "flex";
+            mensagem_erro.innerHTML =
+                "O modo de preparo deve ter no máximo 255 caracteres!";
             setInterval(sumirMensagem, 4000);
             return false
         }
@@ -301,7 +310,7 @@
         }
         cardSucesso.style.display = "flex"
         mensagem_sucesso.innerHTML = "Receita cadastrada com sucesso!";
-        setInterval(sumirMensagem2, 3000)
+        setInterval(sumirMensagem2, 2000)
         jsonIngredientes = []
 
         setTimeout(function () {
@@ -315,5 +324,14 @@
 
     function sumirMensagem2() {
         cardSucesso.style.display = "none"
+    }
+
+    function caracteresRestante(item){
+        let restante = 400-item.length
+        if(restante <= 0){
+            restanteCaracteres.innerHTML = "Limite de caracteres atingido!"
+        }else{
+            restanteCaracteres.innerHTML = restante
+        }
     }
 </script>
