@@ -551,3 +551,14 @@ button:hover{
     background-color: var(--color10hover);
 }
 
+#tipoBox, #ocasiaoBox{
+    padding: 10px 20px;
+    background-color: var(--color10);
+    color: var(--textWhite);
+    border-radius: 20px;
+}
+
+.tipoOcasiaoOut{
+    margin-top: 200px;
+}
+

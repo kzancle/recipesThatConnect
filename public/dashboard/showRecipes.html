@@ -38,7 +38,7 @@
             <div class="content">
                 <h1 class="receitaTitle">Minhas Receitas:</h1>
                 <div class="recipeBox" id="recipeBox">
-                    
+
                 </div>
                 <div class="recipeScreen" id="recipeScreen">
                     <div class="recipeContent">
@@ -48,6 +48,10 @@
                             <div class="ingredientBoxScreen" id="ingredientBox"></div>
                             <div class="preparoBox" id="preparoBox">
                                 <h2>Modo de preparo</h2>
+                            </div>
+                            <div class="tipoOcasiaoOut">
+                                <span id="tipoBox"></span>
+                                <span id="ocasiaoBox"></span>
                             </div>
                         </div>
                     </div>
@@ -148,6 +152,8 @@
                 console.log(json);
                 document.getElementById("recipeTitle").innerHTML = `${json[0].rNome}`
                 document.getElementById("preparoBox").innerHTML += `${json[0].preparo}`
+                document.getElementById("tipoBox").innerHTML = `${json[0].tipo}`
+                document.getElementById("ocasiaoBox").innerHTML = `${json[0].ocasiao}`
                 json.forEach(item => {
                     document.getElementById("ingredientBox").innerHTML +=
                         `${Number(item.quantidade).toFixed(1)} ${item.unidadeqtd} de ${item.nome}<br>`
@@ -164,6 +170,8 @@
         recipeScreen.style.display = 'none'
         document.getElementById("ingredientBox").innerHTML = ""
         document.getElementById("recipeTitle").innerHTML = ""
+        document.getAnimations("tipoBox").innerHTML = ""
+        document.getAnimations("ocasiaoBox").innerHTML = ""
         document.getElementById("preparoBox").innerHTML = `<h2>Modo de preparo</h2>`
     }
 

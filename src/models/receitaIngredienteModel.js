@@ -3,7 +3,7 @@ var database = require("../database/config");
 function buscarIngredientesDaReceita(idUsuario, idReceita) {
 
     var instrucaoSql = `
-    SELECT u.id, r.id, r.nome rNome, quantidade, unidadeqtd, i.nome, r.preparo
+    SELECT u.id, r.id, r.nome rNome, quantidade, unidadeqtd, i.nome, r.preparo, r.tipo, r.ocasiao
     FROM receita_ingrediente ri
     JOIN receita r ON ri.fkreceita = r.id
     JOIN usuario u ON r.fkUsuario = u.id
